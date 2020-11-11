@@ -71,6 +71,9 @@ export default class StandaloneConnector extends AbstractConnector {
           } else {
             this.stream = createConnection(connectionOptions);
           }
+          this.stream.once("error", (err) => {
+            reject(err);
+          });
         } catch (err) {
           reject(err);
           return;
